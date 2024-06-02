@@ -5,10 +5,10 @@ import time
 
 # URL dos dados da FUNCEME
 url = 'https://cdn.funceme.br/calendario/postos/postos.zip'
-bronze_caminho = 'data/bronze/'
+raw_caminho = 'data/raw/'
 nome_arquivo = 'postos.zip'
 
-caminho_arquivo_zip = bronze_caminho + nome_arquivo
+caminho_arquivo_zip = os.path.join(raw_caminho, nome_arquivo)
 try:
     # Baixando arquivo da url
     http = urllib3.PoolManager()
@@ -24,9 +24,11 @@ try:
         print("Aguardando arquivo zip ser baixado!")
         time.sleep(3)
     
+    os.makedirs(raw_caminho + 'txt/', exist_ok=True)
+    
     # Unzipped arquivo baixado
     with zipfile.ZipFile(caminho_arquivo_zip, 'r') as zip_ref:
-        zip_ref.extractall(bronze_caminho + 'txt/')
+        zip_ref.extractall(raw_caminho + 'txt/')
         
     # Removendo arquivo
     os.remove(caminho_arquivo_zip)

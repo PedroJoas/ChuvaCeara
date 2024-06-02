@@ -1,5 +1,6 @@
-BRONZE_DIR = data/bronze/txt
-SILVER_DIR = data/silver/csv
+RAW_DIR = data/raw/
+BRONZE_DIR = data/bronze/
+SILVER_DIR = data/silver/
 
 
 .DEFAULT_GOAL := help
@@ -9,7 +10,10 @@ all: create_dirs
 	@echo "Estrutura de diretórios criada."
 
 .PHONY: create_dirs
-create_dirs: $(BRONZE_DIR) $(SILVER_DIR)
+create_dirs: $(RAW_DIR) $(BRONZE_DIR) $(SILVER_DIR)
+
+$(RAW_DIR):
+	mkdir -p $(RAW_DIR)
 
 $(BRONZE_DIR):
 	mkdir -p $(BRONZE_DIR)
@@ -19,7 +23,7 @@ $(SILVER_DIR):
 
 .PHONY: clean
 clean:
-	rm -rf data/bronze data/silver
+	rm -rf data/raw data/bronze data/silver
 	@echo "Estrutura de diretórios removida."
 
 .PHONY: help
