@@ -20,12 +20,8 @@ Isso criará a estrutura de armazenamento de dados necessário.
 ├── 📂 bronze/ # Contém os dados processados em estágio inicial. 
 ├── 📂 silver/ # Contém os dados processados em estágio intermediário. 
 📂 src/
-├── 📂 ingestors/ # Ingestores de cada camada
-│   ├── 📂 raw/
-│   ├── 📂 bronze/
-│   ├── 📂 silver/
-├── 📂 transformers/ # Transformadores de a cada camada
-│   ├── 📂 raw/
-│   ├── 📂 bronze/
-│   ├── 📂 silver/
+├── 📂 raw/
+├── 📂 bronze/
+├── 📂 silver/
+
 ```
