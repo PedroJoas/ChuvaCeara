@@ -8,7 +8,9 @@ CREATE TABLE municipios (
 CREATE TABLE postos (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    municipio_id INT REFERENCES municipios(id)
+    municipio_id INT REFERENCES municipios(id),
+	latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6)
 );
 
 -- Criação da tabela de registros
@@ -18,3 +20,6 @@ CREATE TABLE registros (
     data DATE NOT NULL,
 	registro float NOT NULL
 );
+
+
+
