@@ -1,2 +1,4 @@
 venv/
 data/
+src/bronze/__init__.py
+src/bronze/__pycache__
