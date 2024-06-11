@@ -32,7 +32,7 @@ class Tranformador_raw():
     def _df_registros(self, df):
         dias = [col for col in df.columns if 'Dia' in col]
         
-        df_melted = df.melt(id_vars=['Municipios', 'Anos', 'Meses'], value_vars=dias, 
+        df_melted = df.melt(id_vars=['Postos', 'Anos', 'Meses'], value_vars=dias, 
                             var_name='Dia_col', value_name='registros')
         
         df_melted['Dia'] = df_melted['Dia_col'].str.extract('(\d+)', expand=False).astype(int)
@@ -41,9 +41,8 @@ class Tranformador_raw():
                                         df_melted['Meses'].astype(str).str.zfill(2) + '-' +
                                         df_melted['Dia'].astype(str).str.zfill(2), errors='coerce')
         
-        df_result = df_melted[['Municipios', 'data', 'registros']]
-    
-   
+        df_result = df_melted[['Postos', 'data', 'registros']]
+        
         nome_arquivo = 'registros.csv'
         caminho_bronze = self._caminho_destino(nome_arquivo)
 
@@ -51,8 +50,8 @@ class Tranformador_raw():
     
     def _df_municipios(self, df):
         df_municipios = pd.DataFrame()
-        df_municipios['Munipios'] = df.Municipios.unique()
-        df_municipios['id'] = range(1, df_municipios.shape[0] + 1)
+        df_municipios['Municipios'] = df.Municipios.unique()
+        df_municipios['id_municipio'] = range(1, df_municipios.shape[0] + 1)
 
         nome_arquivo = 'municipios.csv'
         caminho_bronze = self._caminho_destino(nome_arquivo)
@@ -62,7 +61,7 @@ class Tranformador_raw():
     def _df_postos(self, df):
         colunas = ['Municipios', 'Postos', 'Latitude', 'Longitude']
         df_postos = df[colunas].drop_duplicates(subset=['Postos'])
-        df_postos['id'] = range(1, df_postos.shape[0] + 1)
+        df_postos['id_posto'] = range(1, df_postos.shape[0] + 1)
 
         nome_arquivo = 'postos.csv'
         caminho_bronze = self._caminho_destino(nome_arquivo)
