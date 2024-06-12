@@ -1,25 +1,26 @@
 -- Criação da tabela de municípios
 CREATE TABLE municipios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL
+    id_municipio SERIAL PRIMARY KEY,
+    Municipios VARCHAR(255) NOT NULL
 );
 
 -- Criação da tabela de postos
 CREATE TABLE postos (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    municipio_id INT REFERENCES municipios(id),
-	latitude DECIMAL(9,6),
-    longitude DECIMAL(9,6)
+    id_posto SERIAL PRIMARY KEY,
+    Postos VARCHAR(255) NOT NULL,
+    id_municipio INT REFERENCES municipios(id_municipio),
+	Latitude DECIMAL(9,6),
+    Longitude DECIMAL(9,6)
 );
 
 -- Criação da tabela de registros
 CREATE TABLE registros (
-    id SERIAL PRIMARY KEY,
-    posto_id INT REFERENCES postos(id),
+    id_registro SERIAL PRIMARY KEY,
+    id_posto INT REFERENCES postos(id_posto),
     data DATE NOT NULL,
-	registro float NOT NULL
+	registros float NOT NULL
 );
+
 
 
 
