@@ -1,5 +1,5 @@
 # ChuvaCeara
-Utilizando dados da FUNCEME fazer todo o processo de engenharia de dados.
+Utilizando dados da FUNCEME fazendo todo o processo de engenharia de dados.
 
 
 # Executar
